@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %} {% load rest_framework %} {% block content %}
+
+<div class="container">
+  {% for curso_group in cursos %}
+  <div class="mb-4">
+      <h2>{{ curso_group.nombre_turno }}</h2>
+      {% for turno in curso_group.turnos %}
+      <div class="mb-3">
+          <h3>{{ turno.nombre_nivel }}</h3>
+          <div class="row">
+              {% for curso in turno.cursos %}
+              <div class="col-xl-4 col-md-6 mb-4">
+                  <div class="card border-left-info shadow h-100 py-2">
+                      <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="h5 mb-2 font-weight-bold text-gray-800">{{ curso.grado.nombre_grado }}</div>
+                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Cantidad Estudiantes: {{ curso.cantidad_estudiantes }}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
